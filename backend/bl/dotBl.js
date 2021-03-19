@@ -9,12 +9,12 @@ class DotBL {
         return this.dal.getAllDotData();
     }
 
-    async createNewDot(dotWallName, room, connectedToPort, switchId, floorId, systemId,vlan) {
-        return this.dal.createNewDot(dotWallName, room, connectedToPort, switchId, floorId, systemId,vlan);
+    async createNewDot(dotWallName, room, connectedToPort, isConnected ,switchId, floorId, systemId,vlan) {
+        return this.dal.createNewDot(dotWallName, room, connectedToPort, isConnected, switchId, floorId, systemId,vlan);
     }
 
-    async updateDothData(dotId, newDotWallName, newRomm, newConnectedToPort, newSwitchId, newFloorId, newSystemId,newVlan) {
-        return this.dal.updateDotData(dotId, newDotWallName, newRomm, newConnectedToPort, newSwitchId, newFloorId,newSystemId,newVlan);
+    async updateDothData(dotId, newDotWallName, newRomm, newConnectedToPort, newIsConnected, newSwitchId, newFloorId, newSystemId,newVlan) {
+        return this.dal.updateDotData(dotId, newDotWallName, newRomm, newConnectedToPort, newIsConnected,newSwitchId, newFloorId,newSystemId,newVlan);
     }
 
     async deleteDotData(dotId) {

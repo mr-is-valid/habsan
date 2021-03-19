@@ -2,6 +2,7 @@ const switchModel = require('../models/switch.model');
 const systemModel = require('../models/system.model');
 const floorModel = require('../models/floor.model');
 const dotModel = require('../models/dot.model');
+const switchTypeModel = require('../models/switchType.model');
 
 class DAL {
     /*
@@ -12,7 +13,8 @@ class DAL {
             attributes: ['switchId', 'switchName', 'ipAddress', 'ports', 'interfaceType'],
             include: [
                 { model: floorModel },
-                { model: systemModel }
+                { model: systemModel },
+                { model: switchTypeModel }
             ]
         });
     }
@@ -41,12 +43,12 @@ class DAL {
     /*
     *create new row at the table in diffrendt models
     */
-    static async createNewSwitch(switchName, ipAddress, ports, interfaceType, floorId, systemId) {
-        return switchModel.create({ switchName, ipAddress, ports, interfaceType, floorId, systemId });
+    static async createNewSwitch(switchName, ipAddress, ports, interfaceType, floorId, systemId, switchTypeId) {
+        return switchModel.create({ switchName, ipAddress, ports, interfaceType, floorId, systemId , switchTypeId});
     }
 
-    static async createNewDot(dotWallName, room, connectedToPort, switchId, floorId, systemId, vlan) {
-        return dotModel.create({ dotWallName, room, connectedToPort, switchId, floorId, systemId, vlan });
+    static async createNewDot(dotWallName, room, connectedToPort, isConnected,switchId, floorId, systemId, vlan) {
+        return dotModel.create({ dotWallName, room, connectedToPort,isConnected, switchId, floorId, systemId, vlan });
     }
 
     static async createNewSystem(systemName) {
@@ -60,12 +62,13 @@ class DAL {
     /*
     *update row at the table in diffrendt models
     */
-    static async updateSwitchData(switchId, newSwitchName, newIpAddres, newPorts, newInterfaceType, newFloorId, newSystemId) {
+    static async updateSwitchData(switchId, newSwitchName, newIpAddres, newPorts, newInterfaceType, newFloorId, newSystemId , newSwitchTypeId) {
         try {
             const result = await switchModel.update(
                 {
                     switchName: newSwitchName, ipAddress: newIpAddres, ports: newPorts,
-                    interfaceType: newInterfaceType, floorId: newFloorId, systemId: newSystemId
+                    interfaceType: newInterfaceType, floorId: newFloorId, systemId: newSystemId,
+                    switchTypeId: newSwitchTypeId
                 },
                 { where: { switchId: switchId } }
             )
@@ -75,12 +78,13 @@ class DAL {
         }
     }
 
-    static async updateDotData(dotId, newDotWallName, newRomm, newConnectedToPort, newSwitchId, newFloorId, newSystemId, newVlan) {
+    static async updateDotData(dotId, newDotWallName, newRomm, newConnectedToPort, newIsConnected ,newSwitchId, newFloorId, newSystemId, newVlan) {
         try {
             const result = await dotModel.update(
                 {
                     dotWallName: newDotWallName, room: newRomm, connectedToPort: newConnectedToPort,
                     switchId: newSwitchId, floorId: newFloorId, systemId: newSystemId, newVlan: newVlan,
+                    isConnected: newIsConnected
                 },
                 { where: { dotId: dotId } }
             )

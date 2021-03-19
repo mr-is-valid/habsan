@@ -9,12 +9,12 @@ class SwitchBL {
         return this.dal.getAllSwitchData();
     }
 
-    async createNewSwitch(switchName, ipAddress, ports, interfaceType, floorId, systemId) {
-        return this.dal.createNewSwitch(switchName, ipAddress, ports, interfaceType, floorId, systemId);
+    async createNewSwitch(switchName, ipAddress, ports, interfaceType, floorId, systemId ,switchTypeId) {
+        return this.dal.createNewSwitch(switchName, ipAddress, ports, interfaceType, floorId, systemId , switchTypeId);
     }
 
-    async updateSwitchData(switchId, newSwitchName, newIpAddres, newPorts, newInterfaceType, newFloorId, newSystemId) {
-        return this.dal.updateSwitchData(switchId, newSwitchName, newIpAddres, newPorts, newInterfaceType, newFloorId, newSystemId);
+    async updateSwitchData(switchId, newSwitchName, newIpAddres, newPorts, newInterfaceType, newFloorId, newSystemId ,newSwitchTypeId) {
+        return this.dal.updateSwitchData(switchId, newSwitchName, newIpAddres, newPorts, newInterfaceType, newFloorId, newSystemId, newSwitchTypeId);
     }
 
     async deleteSwitchData(switchId) {
