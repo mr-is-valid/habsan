@@ -5,8 +5,8 @@ import { AppState } from '../app/app.state';
 import { TutorialModel } from '../app/models/tutorial.model';
 import * as TutorialActions from '../app/actions/tutorial.actions';
 import { HabsanApiService } from './services/habsan-api.service';
-import { isNull, isNullOrUndefined } from 'util';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { ActivatedRoute , Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +19,17 @@ export class AppComponent implements OnInit{
   title = '';
   tutorials: Observable<TutorialModel[]>;
 
-  constructor(private store: Store<AppState>, private habsanApiService:HabsanApiService) { 
+  constructor(private store: Store<AppState>, private habsanApiService:HabsanApiService, private router: Router) { 
+    this.router.navigateByUrl('dotsComponets');
     this.tutorials = this.store.select('tutorials');
   }
 
   ngOnInit(){
+  }
+
+  changeView(view){
+    console.log(view);
+    this.router.navigateByUrl(view);
   }
 
   addTutorial(name, url) {

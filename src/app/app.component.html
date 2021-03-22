@@ -1,4 +1,35 @@
 
-<div>
-    <h3>Tutorials</h3>
+<div class="container">
+    <div class="title">
+        <p>Habsan</p>
+    </div>
+
+    <div class="dataView">
+        <div class="sideMenu">
+            <table class="table">
+                <tbody>
+                    <tr (click)="changeView('dotsComponets')">
+                        <td>
+                            Dots
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            Events
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            Test1
+                        </td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="tableView">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
 </div>

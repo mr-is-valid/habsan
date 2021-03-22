@@ -1,6 +1,6 @@
 const Floors = require('./floor.model');
 const Systems = require('./system.model');
-const SwitchType = require('./switchType.model');
+const SwitchTypes = require('./switchTypes.model');
 const Sequelize = require('sequelize');
 // const repo = require('../repo/index');
 const Model = Sequelize.Model;
@@ -48,7 +48,7 @@ Switchs.init({
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-            model: 'switchType', //  refers to table name
+            model: 'SwitchTypes', //  refers to table name
             key: 'Id', //  refers to column name file in table
         }
     },
@@ -70,6 +70,6 @@ Switchs.init({
 
 Switchs.hasOne(Floors,  { foreignKey: 'floorId' });
 Switchs.hasOne(Systems, { foreignKey: 'systemId' });
-Switchs.hasOne(SwitchType, { foreignKey: 'switchType' });
+Switchs.hasOne(SwitchTypes, { foreignKey: 'Id' });
 
 module.exports = Switchs;

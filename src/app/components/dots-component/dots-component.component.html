@@ -1,0 +1,49 @@
+
+
+<div class="wrapper">
+
+    <div class="searchBar">
+        <form class="form-inline md-form form-sm" style="height: 60px;">
+            <!-- <mdb-icon fas icon="search" aria-hidden="true" style="font-size: 20px; padding-left: 10px;"></mdb-icon> -->
+            <img class="searchImg" src="../../../assets/search.png"/>
+            <input  class="form-control form-control-sm ml-3" type="text" 
+                    placeholder="Search" aria-label="Search" mdbInput style="width: 93%;">
+        </form>              
+    </div>
+
+    <div class="filterBar"></div>
+
+    <div class="viewData">
+        <table class="table" style="direction: rtl;">
+            <thead style="color: #1c2b3a">
+                <th>#</th>
+                <th>שם נקודה</th>
+                <th>קומה</th>
+                <th>מספר חדר</th>
+                <th>vlan</th>
+                <th>מערכת</th>
+                <th>שם המתג</th>
+                <th>כתובת IP</th>
+                <th>סוג המתג</th>
+                <th>פורט</th>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let dot of data ; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{dot.dotWallName}}</td>
+                    <td>{{dot.floor.floorName}}</td>
+                    <td>{{dot.room}}</td>
+                    <td>{{dot.vlan}}</td>
+                    <td>{{dot.system.systemName}}</td>
+                    <td>{{dot.switch.switchName}}</td>
+                    <td>{{dot.switch.ipAddress}}</td>
+                    <td>{{dot.switch.switchType.type}}</td>
+                    <td>{{dot.connectedToPort}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

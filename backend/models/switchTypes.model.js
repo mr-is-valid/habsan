@@ -4,8 +4,8 @@ const Model = Sequelize.Model;
 // const { sqlConn } = repo;
 const sequelize = new Sequelize('mysql://root:!Q2w3e4r@localhost:3306/habsan');
 
-class SwitchType extends Model { }
-SwitchType.init({
+class SwitchTypes extends Model { }
+SwitchTypes.init({
     // attributes
     Id: {
         type: Sequelize.INTEGER,
@@ -27,8 +27,8 @@ SwitchType.init({
         timestamps: false,
         //sqlConn,
         sequelize,
-        modelName: 'switchType'
+        modelName: 'switchTypes'
     });
 
-module.exports = SwitchType;
+module.exports = SwitchTypes;
 
