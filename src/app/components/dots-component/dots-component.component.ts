@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { AddDotDialogComponent } from '../../dialogs/add-dot-dialog/add-dot-dialog.component'
 
 @Component({
     selector: 'app-dots-component',
@@ -6,14 +8,15 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./dots-component.component.scss']
 })
 export class DotsComponentComponent implements OnInit {
-
+    
     data = [
         {
             "dotId": 1,
             "dotWallName": "a1",
             "room": "111",
             "connectedToPort": "1",
-            "vlan": null,
+            "vlan": 100,
+            "isConnected": true,
             "switch": {
                 "switchId": 1,
                 "switchName": "switch1",
@@ -43,7 +46,8 @@ export class DotsComponentComponent implements OnInit {
             "dotWallName": "a2",
             "room": "222",
             "connectedToPort": "2",
-            "vlan": null,
+            "vlan": 100,
+            "isConnected": true,
             "switch": {
                 "switchId": 2,
                 "switchName": "switch2",
@@ -73,7 +77,8 @@ export class DotsComponentComponent implements OnInit {
             "dotWallName": "a3",
             "room": "333",
             "connectedToPort": "3",
-            "vlan": null,
+            "vlan": 100,
+            "isConnected": true,
             "switch": {
                 "switchId": 3,
                 "switchName": "switch3",
@@ -103,29 +108,91 @@ export class DotsComponentComponent implements OnInit {
             "dotWallName": "a4",
             "room": "444",
             "connectedToPort": "4",
-            "vlan": null,
-            "switch": null,
-            "floor": null,
+            "isConnected": false,
+            "vlan": 100,
+            "switch": {
+                "switchId": 2,
+                "switchName": "switch2",
+                "ipAddress": "1.1.1.2",
+                "ports": 24,
+                "numOfSwitch": 1,
+                "floorId": 2,
+                "switchTypeId": 2,
+                "systemId": 2,
+                "switchType": {
+                    "Id": 2,
+                    "type": "C2960X",
+                    "portType": "Gi"
+                }
+            },
+            "floor": {
+                "floorId": 1,
+                "floorName": "test1"
+            },
             "system": {
-                "systemId": 4,
-                "systemName": "postman system in"
+                "systemId": 1,
+                "systemName": "שביל החלב"
             }
         },
         {
             "dotId": 5,
             "dotWallName": "test",
             "room": "230",
+            "isConnected": false,
             "connectedToPort": "4",
-            "vlan": null,
-            "switch": null,
-            "floor": null,
-            "system": null
+            "vlan": 100,
+            "switch": {
+                "switchId": 2,
+                "switchName": "switch2",
+                "ipAddress": "1.1.1.2",
+                "ports": 24,
+                "numOfSwitch": 1,
+                "floorId": 2,
+                "switchTypeId": 2,
+                "systemId": 2,
+                "switchType": {
+                    "Id": 2,
+                    "type": "C2960X",
+                    "portType": "Gi"
+                }
+            },
+            "floor": {
+                "floorId": 1,
+                "floorName": "test1"
+            },
+            "system": {
+                "systemId": 1,
+                "systemName": "שביל החלב"
+            }
         }
     ]
 
-  constructor() { }
+    constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-  }
+    ngOnInit() {
+    }
+
+    openDialog() {
+        this.dialog.open(AddDotDialogComponent);
+    }
+
+    editDot(dot){
+        const dialogConfig = new MatDialogConfig();
+        
+        dialogConfig.data = {
+            dot : dot
+        };
+        const dialogRef = this.dialog.open(AddDotDialogComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(
+            data => console.log("Dialog output:", data)
+        ); 
+    }
+
+    deleteDot(dotID){
+        if(confirm("Are you sure you want to delete this dot ?")) {
+            console.log("Implement delete functionality here");
+        }
+    }
 
 }

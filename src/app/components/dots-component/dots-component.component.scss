@@ -29,3 +29,37 @@
     width: 85%;
     background-color: white;
 }
+
+.customBtnPrimary{
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 0.25rem;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.customBtnPrimary:hover{
+    color: white;
+    font-weight: bold;
+    border-radius: 0.25rem;
+    background-color: #3295ff;
+    border-color: #3295ff;
+}
+
+.customMatIcon{
+    color: white;
+    margin-left: 5px;
+    margin-right: 0px !important;
+}
+
+.customBtnMenu{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.customMatMenuIcon{
+    margin-top: 10px;
+    
+}

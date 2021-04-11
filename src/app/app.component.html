@@ -1,34 +1,30 @@
 
 <div class="container">
     <div class="title">
-        <p>Habsan</p>
+        Habsan
     </div>
 
     <div class="dataView">
         <div class="sideMenu">
-            <table class="table">
-                <tbody>
-                    <tr (click)="changeView('dotsComponets')">
-                        <td>
-                            Dots
-                        </td> 
-                    </tr>
-                    <tr>
-                        <td>
-                            Events
-                        </td> 
-                    </tr>
-                    <tr>
-                        <td>
-                            Test1
-                        </td> 
-                    </tr>
-                </tbody>
-            </table>
+            <label class="label first" (click)="changeView('dotsComponets')"> 
+                <p> Dots </p>
+            </label>
+
+            <label class="label"> 
+                <p>Events</p> 
+            </label>
+
+            <label class="label"> 
+                <p>Test1</p> 
+            </label>
         </div>
         
-        <div class="tableView">
+        <div class="tableView" *ngIf="isConnected == ture">
             <router-outlet></router-outlet>
+        </div>
+
+        <div class="tableView" *ngIf="isConnected == false">
+            <div>The Server is down</div>
         </div>
     </div>
 

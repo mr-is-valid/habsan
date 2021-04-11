@@ -4,20 +4,25 @@
 
     <div class="searchBar">
         <form class="form-inline md-form form-sm" style="height: 60px;">
-            <!-- <mdb-icon fas icon="search" aria-hidden="true" style="font-size: 20px; padding-left: 10px;"></mdb-icon> -->
             <img class="searchImg" src="../../../assets/search.png"/>
             <input  class="form-control form-control-sm ml-3" type="text" 
                     placeholder="Search" aria-label="Search" mdbInput style="width: 93%;">
         </form>              
     </div>
 
-    <div class="filterBar"></div>
+    <div class="filterBar">
+        <button mat-menu-item class="customBtnPrimary" (click)="openDialog()">
+            <span>Add new dot</span>
+            <mat-icon class="customMatIcon">add</mat-icon>
+        </button>
+    </div>
 
     <div class="viewData">
         <table class="table" style="direction: rtl;">
-            <thead style="color: #1c2b3a">
+            <thead style="color: #1c2b3a; text-align: center;">
                 <th>#</th>
                 <th>שם נקודה</th>
+                <th>מחובר?</th>
                 <th>קומה</th>
                 <th>מספר חדר</th>
                 <th>vlan</th>
@@ -26,12 +31,19 @@
                 <th>כתובת IP</th>
                 <th>סוג המתג</th>
                 <th>פורט</th>
+                <th>אפשרויות</th>
             </thead>
 
             <tbody>
-                <tr *ngFor="let dot of data ; let i = index">
-                    <td>{{i + 1}}</td>
+                <tr *ngFor="let dot of data ; let i = index" style="text-align: center;">
+                    <td>{{dot.dotId}}</td>
                     <td>{{dot.dotWallName}}</td>
+                    <td *ngIf="dot.isConnected">
+                        <i class="material-icons" style="color: green;">done</i>
+                    </td>
+                    <td *ngIf="!dot.isConnected">
+                        <i class="material-icons" style="color: red;">close</i>
+                    </td>
                     <td>{{dot.floor.floorName}}</td>
                     <td>{{dot.room}}</td>
                     <td>{{dot.vlan}}</td>
@@ -40,6 +52,21 @@
                     <td>{{dot.switch.ipAddress}}</td>
                     <td>{{dot.switch.switchType.type}}</td>
                     <td>{{dot.connectedToPort}}</td>
+                    <th>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item class="customBtnMenu" (click)="editDot(dot)">
+                                <span>עריכה</span>
+                                <mat-icon class="customMatMenuIcon" style="color: green">edit</mat-icon>
+                            </button>
+                            <button mat-menu-item class="customBtnMenu" (click)="deleteDot(dot.dotId)">
+                                <span>מחיקה</span>
+                                <mat-icon class="customMatMenuIcon" style="color:red;">delete</mat-icon>
+                            </button>
+                        </mat-menu>
+                    </th>
                 </tr>
             </tbody>
 

@@ -8,8 +8,21 @@ const cors = require('cors');
 const controllers = require('./controllers/index');
 const repo = require('./repo/index');
 const Sequelize = require('sequelize');
-
 const app = express();
+
+//define the socker server
+const http = require('http');
+const server = http.Server(app)
+const socketIO = require('socket.io');
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+  console.log('user connected');
+});
+
+server.listen(5000, function(){
+  console.log('socker server listening on *:5000');
+});
 
 // view engine setup
 const sequelize = new Sequelize('mysql://root:!Q2w3e4r@localhost:3306/habsan');
