@@ -9,10 +9,27 @@ export class HabsanApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private url = 'my server url';
+  private url = 'http://localhost:3000';
 
   getData(){
     return this.httpClient.get(this.url);
+  }
+
+  getSwitchData(){
+    return this.httpClient.get(this.url + "/SwitchController/getAllSwitchData");
+  }
+
+  
+  getSwitchTypeData(){
+    return this.httpClient.get(this.url + "/SwitchTypeController/getAllSwitchTypeData");
+  }
+
+  getFloorData(){
+    return this.httpClient.get(this.url + "/FloorController/getAllFloorData");
+  }
+
+  getSystemData(){
+    return this.httpClient.get(this.url + "/SystemController/getAllSystemData");
   }
   
   createArray(array){

@@ -8,6 +8,7 @@ class DAL {
     /*
     *get all data from diffrend controller
     */
+
     static async getAllSwitchData() {
         return switchModel.findAll({
             attributes: ['switchId', 'switchName', 'ipAddress', 'ports', 'switchTypeId'],
@@ -40,6 +41,10 @@ class DAL {
         return floorModel.findAll({});
     }
 
+    static async getAllSwitchTypeData() {
+        return switchTypesModel.findAll({});
+    }
+
 
     /*
     *create new row at the table in diffrendt models
@@ -58,6 +63,10 @@ class DAL {
 
     static async createNewFloor(floorName) {
         return floorModel.create({ floorName });
+    }
+
+    static async createSwitchType(type, portType) {
+        return switchTypesModel.create({ type, portType });
     }
 
     /*

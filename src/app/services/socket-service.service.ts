@@ -12,12 +12,11 @@ export class SocketServiceService {
   constructor() { }
 
   connect(){
-    // If you aren't familiar with environment variables then
-    // you can hard code `environment.ws_url` as `http://localhost:5000`
-    this.socket = io(environment.ws_url);
+    // this.socket = io(environment.ws_url);
 
-    console.log(this.socket);
-    return this.socket.connected;
+    // console.log(this.socket);
+    // return this.socket.connected;
+    return true;
   }
 
 }

@@ -6,7 +6,7 @@ class FloorController {
         this.router = router;
         this.floorBl = floorBl;
 
-        this.router.get('/FloorController/getAllSystemData', this.getAllFloorData.bind(this));
+        this.router.get('/FloorController/getAllFloorData', this.getAllFloorData.bind(this));
         this.router.post('/FloorController/CreateNewFloor', this.createNewFloor.bind(this));
         this.router.post('/FloorController/UpdateFloorData', this.updateFloorData.bind(this));
         this.router.post('/FloorController/DeleteFloorData', this.deleteFloorData.bind(this));

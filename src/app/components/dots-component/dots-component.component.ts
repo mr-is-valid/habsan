@@ -9,6 +9,8 @@ import { AddDotDialogComponent } from '../../dialogs/add-dot-dialog/add-dot-dial
 })
 export class DotsComponentComponent implements OnInit {
     
+    public searchFilter = "";
+
     data = [
         {
             "dotId": 1,
@@ -167,9 +169,20 @@ export class DotsComponentComponent implements OnInit {
         }
     ]
 
-    constructor(public dialog: MatDialog) {}
+    tempData = [];
+
+    constructor(public dialog: MatDialog) {
+        Object.assign(this.tempData,[...this.data]);
+    }
 
     ngOnInit() {
+    }
+
+    valuechange(event){
+        if(event == '')
+            Object.assign(this.tempData,[...this.data]);
+        else 
+            this.tempData = this.data.filter(item => item.dotWallName == event);
     }
 
     openDialog() {

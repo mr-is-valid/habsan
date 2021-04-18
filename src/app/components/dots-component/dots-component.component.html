@@ -3,17 +3,18 @@
 <div class="wrapper">
 
     <div class="searchBar">
-        <form class="form-inline md-form form-sm" style="height: 60px;">
+        <form style="width: 90%;">
             <img class="searchImg" src="../../../assets/search.png"/>
-            <input  class="form-control form-control-sm ml-3" type="text" 
-                    placeholder="Search" aria-label="Search" mdbInput style="width: 93%;">
-        </form>              
-    </div>
+            <mat-form-field style="width: 90%;">
+              <input type="email" matInput name="searchDot" 
+              placeholder=" Search for any dot"  
+              [(ngModel)]="searchFilter"  (ngModelChange)="valuechange($event)"/>
+            </mat-form-field>
+        </form>
 
-    <div class="filterBar">
-        <button mat-menu-item class="customBtnPrimary" (click)="openDialog()">
-            <span>Add new dot</span>
-            <mat-icon class="customMatIcon">add</mat-icon>
+        <button mat-mini-fab (click)="openDialog()" 
+                style="background-color: #00365c; margin-top: 1.5%; margin-right: 2%;">
+            <mat-icon >add</mat-icon>
         </button>
     </div>
 
@@ -35,8 +36,8 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let dot of data ; let i = index" style="text-align: center;">
-                    <td>{{dot.dotId}}</td>
+                <tr *ngFor="let dot of tempData ; let i = index" style="text-align: center;">
+                    <td style="color: #00365c;">{{dot.dotId}}</td>
                     <td>{{dot.dotWallName}}</td>
                     <td *ngIf="dot.isConnected">
                         <i class="material-icons" style="color: green;">done</i>
@@ -54,7 +55,7 @@
                     <td>{{dot.connectedToPort}}</td>
                     <th>
                         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                            <mat-icon>more_vert</mat-icon>
+                            <mat-icon style="color: #00365c;">more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item class="customBtnMenu" (click)="editDot(dot)">
