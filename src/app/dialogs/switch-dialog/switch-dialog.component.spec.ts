@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DotsComponent } from './dots-component.component';
+import { SwitchDialogComponent } from './switch-dialog.component';
 
-describe('DotsComponentComponent', () => {
-  let component: DotsComponent;
-  let fixture: ComponentFixture<DotsComponent>;
+describe('AddDotDialogComponent', () => {
+  let component: SwitchDialogComponent;
+  let fixture: ComponentFixture<SwitchDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DotsComponent ]
+      declarations: [ SwitchDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DotsComponent);
+    fixture = TestBed.createComponent(SwitchDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

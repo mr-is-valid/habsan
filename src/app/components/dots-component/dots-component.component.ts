@@ -7,7 +7,7 @@ import { AddDotDialogComponent } from '../../dialogs/add-dot-dialog/add-dot-dial
     templateUrl: './dots-component.component.html',
     styleUrls: ['./dots-component.component.scss']
 })
-export class DotsComponentComponent implements OnInit {
+export class DotsComponent implements OnInit {
     
     public searchFilter = "";
 

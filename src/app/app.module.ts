@@ -26,21 +26,29 @@ import { StoreModule} from '@ngrx/store';
 import { TutorialReducer } from './reducers/tutorial.reducer';
 
 //*******************COMPONENTS********************* */
-import { DotsComponentComponent } from './components/dots-component/dots-component.component';
-import { AddDotDialogComponent } from './dialogs/add-dot-dialog/add-dot-dialog.component'
+import { DotsComponent } from './components/dots-component/dots-component.component';
+import { AddDotDialogComponent } from './dialogs/add-dot-dialog/add-dot-dialog.component';
+import { SwitchDialogComponent } from './dialogs/switch-dialog/switch-dialog.component';
+import { EventsComponent } from './components/event/events.component';
+import { SwitchComponent } from './components/switches/switchs.component';
 
 //*******************SERVICES********************* */
 import { SocketServiceService } from './services/socket-service.service';
 
 const routes: Routes = [
-  { path: 'dotsComponets', component: DotsComponentComponent },
+  { path: 'dotsComponets', component: DotsComponent },
+  { path: 'eventsComponent', component: EventsComponent},
+  { path: 'switchesComponent', component: SwitchComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DotsComponentComponent,
+    DotsComponent,
     AddDotDialogComponent,
+    SwitchDialogComponent,
+    EventsComponent,
+    SwitchComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -61,6 +69,6 @@ const routes: Routes = [
   providers: [SocketServiceService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA],
-  entryComponents: [AddDotDialogComponent]
+  entryComponents: [AddDotDialogComponent,SwitchDialogComponent]
 })
 export class AppModule { }

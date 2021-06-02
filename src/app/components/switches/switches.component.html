@@ -1,0 +1,43 @@
+<div class="wrapper">
+    <div class="searchBar">
+        <form style="width: 90%;">
+            <img class="searchImg" src="../../../assets/search.png"/>
+            <mat-form-field style="width: 90%;">
+              <input type="email" matInput name="searchswitch" 
+              placeholder=" Search for any switch"  
+              [(ngModel)]="searchFilter"  (ngModelChange)="valuechange($event)"/>
+            </mat-form-field>
+        </form>
+
+        <button mat-mini-fab (click)="addDialog()" 
+                style="background-color: #00365c; margin-top: 1.5%; margin-right: 2%;">
+            <mat-icon >add</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div class="viewData">
+    <div class="tab" *ngFor="let switch of tempData ; let i = index">
+        <div class="Info">
+            <div class="switchInfo">
+                <p>{{switch.switchName}} : שם</p>
+                <p>{{switch.ipAddress}} : IP</p>
+                <p>{{switch.ports}} : Ports</p>
+                <p>קומה : {{switch.floor.floorName}}</p>
+                <p>מערכת : {{switch.system.systemName}}</p>
+                <p>{{switch.switchType.type}} : דגם</p>
+            </div>
+            <div class="sw_image">
+                <img class="image" src="assets/images/{{switch.switchType.type}}.png" alt="image not found">
+            </div>
+        </div>
+
+        <div class="options">
+            <button mat-mini-fab (click)="editSwitch(switch)" 
+                    style="background-color: #00365c;">
+                    <mat-icon style="font-size: 21px;">edit</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
