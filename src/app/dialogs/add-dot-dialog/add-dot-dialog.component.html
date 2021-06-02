@@ -1,12 +1,78 @@
 
 
-<h1 mat-dialog-title>הוסף נקודה</h1>
+<h1 mat-dialog-title style="text-align: right;">הוסף נקודה</h1>
 
 <div mat-dialog-content>
+    <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td></td>
+                <td>
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="מספר נקודה"  
+                        name="name" [(ngModel)]="dotModel.dotWallName"/>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="מספר חדר"  name="room"
+                        [(ngModel)]="dotModel.room" />
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>בחר קומה</mat-label>
+                        <mat-select (selectionChange)='changeValue($event.value,"floorId")'>
+                            <mat-option *ngFor="let floor of floorData"  [value]="floor.floorId">
+                                {{floor.floorName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="מספר פורט"  name="port"
+                        [(ngModel)]="dotModel.connectedToPort" />
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>בחר מתג</mat-label>
+                        <mat-select (selectionChange)='changeValue($event.value,"switchId")'>
+                            <mat-option *ngFor="let switch of switchData"  [value]="switch.switchId">
+                                {{switch.switchName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="vlan?"  name="vlan"
+                        [(ngModel)]="dotModel.vlan" />
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>בחר מערכת</mat-label>
+                        <mat-select (selectionChange)='changeValue($event.value,"systemId")'>
+                            <mat-option *ngFor="let system of systemData" [value]="system.systemId">
+                                {{system.systemName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>
-        Close
-    </button>
+    <button mat-button mat-dialog-close> Close </button>
+    <button (click)="save()">test</button>
 </div>
