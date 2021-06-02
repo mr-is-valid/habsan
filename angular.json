@@ -134,6 +134,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Habsan"
+    }
+  },
+  "defaultProject": "Habsan",
+  "cli": {
+    "analytics": false
+  }
 }
