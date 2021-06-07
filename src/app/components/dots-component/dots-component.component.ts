@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { AddDotDialogComponent } from '../../dialogs/add-dot-dialog/add-dot-dialog.component'
-
+import { HabsanApiService } from '../../services/habsan-api.service';
 @Component({
     selector: 'app-dots-component',
     templateUrl: './dots-component.component.html',
@@ -171,7 +171,7 @@ export class DotsComponent implements OnInit {
 
     tempData = [];
 
-    constructor(public dialog: MatDialog) {
+    constructor(public dialog: MatDialog ,private habsanApiService:HabsanApiService) {
         Object.assign(this.tempData,[...this.data]);
     }
 
@@ -189,22 +189,23 @@ export class DotsComponent implements OnInit {
         this.dialog.open(AddDotDialogComponent);
     }
 
-    editDot(dot){
+    editDot(dot,index){
         const dialogConfig = new MatDialogConfig();
         
-        dialogConfig.data = {
-            dot : dot
-        };
+        dialogConfig.data = Object.assign({},dot)
+
         const dialogRef = this.dialog.open(AddDotDialogComponent, dialogConfig);
 
-        dialogRef.afterClosed().subscribe(
-            data => console.log("Dialog output:", data)
-        ); 
+        dialogRef.afterClosed().subscribe((data) =>{
+            Object.assign(this.data[index],data);
+        });    
     }
 
-    deleteDot(dotID){
+    deleteDot(dotID,index){
         if(confirm("Are you sure you want to delete this dot ?")) {
-            console.log("Implement delete functionality here");
+            //this.habsanApiService.deleteDot(dotID);
+            this.data.splice(index, 1);
+            this.tempData = this.data;
         }
     }
 

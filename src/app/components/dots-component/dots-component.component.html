@@ -56,11 +56,11 @@
                             <mat-icon style="color: #00365c;">more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item class="customBtnMenu" (click)="editDot(dot)">
+                            <button mat-menu-item class="customBtnMenu" (click)="editDot(dot,i)">
                                 <span>עריכה</span>
                                 <mat-icon class="customMatMenuIcon" style="color: green">edit</mat-icon>
                             </button>
-                            <button mat-menu-item class="customBtnMenu" (click)="deleteDot(dot.dotId)">
+                            <button mat-menu-item class="customBtnMenu" (click)="deleteDot(dot.dotId,i)">
                                 <span>מחיקה</span>
                                 <mat-icon class="customMatMenuIcon" style="color:red;">delete</mat-icon>
                             </button>

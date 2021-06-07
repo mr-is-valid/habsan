@@ -9,7 +9,7 @@ import { HabsanApiService } from '../../services/habsan-api.service';
 })
 export class AddDotDialogComponent implements OnInit {
     
-    data: any;
+    dotDetails: any;
 
     switchTypeData = [
         {
@@ -122,8 +122,8 @@ export class AddDotDialogComponent implements OnInit {
     constructor(private habsanApiService:HabsanApiService, private dialogRef: MatDialogRef<AddDotDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) data) {
 
-        this.data = data;
-        console.log(data);
+        this.dotDetails = data;
+        console.log(this.dotDetails);
 
         // this.habsanApiService.getFloorData().subscribe(res => {
         //     this.floorData = res;
@@ -150,18 +150,20 @@ export class AddDotDialogComponent implements OnInit {
     }
 
     save() {
-        this.dialogRef.close(this.data);
-    }
-
-    close() {
-        this.dialogRef.close();
+        this.dialogRef.close(this.dotDetails);
     }
 
     changeValue(value , field){
         switch(field){
-            case "floorId" : this.dotModel.floorId  = value; break;
-            case "systemId": this.dotModel.systemId = value; break;
-            case "switchId": this.dotModel.switchId = value; break;
+            case "floorId" : 
+                            this.dotDetails?Object.assign(this.dotDetails.floor,value):this.dotModel.floorId = value; 
+                            break;
+            case "systemId": 
+                            this.dotDetails?Object.assign(this.dotDetails.system,value):this.dotModel.systemId = value; 
+                            break;
+            case "switchId": 
+                            this.dotDetails?Object.assign(this.dotDetails.switch,value):this.dotModel.switchId = value; 
+                            break;
         }
     }
 

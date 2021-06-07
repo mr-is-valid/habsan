@@ -8,21 +8,38 @@
             <tr>
                 <td></td>
                 <td>
-                    <mat-form-field>
+                    <mat-form-field *ngIf="dotDetails">
+                        <input type="text" disabled matInput name="name" placeholder="מספר נקודה" [(ngModel)]="dotDetails.dotWallName"/>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!dotDetails">
                         <input type="text" matInput placeholder="מספר נקודה"  
-                        name="name" [(ngModel)]="dotModel.dotWallName"/>
+                                name="name" [(ngModel)]="dotModel.dotWallName"/>
                     </mat-form-field>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <mat-form-field>
-                        <input type="text" matInput placeholder="מספר חדר"  name="room"
-                        [(ngModel)]="dotModel.room" />
+                    <mat-form-field *ngIf="dotDetails">
+                        <input type="text" matInput name="room" placeholder="מספר חדר" [(ngModel)]="dotDetails.room"/>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!dotDetails">
+                        <input type="text" matInput placeholder="מספר חדר"  
+                                name="room" [(ngModel)]="dotModel.room" />
                     </mat-form-field>
                 </td>
                 <td>
-                    <mat-form-field>
+                    <mat-form-field *ngIf="dotDetails">
+                        <mat-label>{{dotDetails.floor.floorName}}</mat-label>
+                        <mat-select (selectionChange)='changeValue($event.value,"floorId")'>
+                            <mat-option *ngFor="let floor of floorData"  [value]="floor">
+                                {{floor.floorName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!dotDetails">
                         <mat-label>בחר קומה</mat-label>
                         <mat-select (selectionChange)='changeValue($event.value,"floorId")'>
                             <mat-option *ngFor="let floor of floorData"  [value]="floor.floorId">
@@ -34,13 +51,26 @@
             </tr>
             <tr>
                 <td>
-                    <mat-form-field>
-                        <input type="text" matInput placeholder="מספר פורט"  name="port"
-                        [(ngModel)]="dotModel.connectedToPort" />
+                    <mat-form-field  *ngIf="dotDetails">
+                        <input type="text" matInput name="port" placeholder="מספר פורט" [(ngModel)]="dotDetails.connectedToPort"/>
+                    </mat-form-field>
+
+                    <mat-form-field  *ngIf="!dotDetails">
+                        <input type="text" matInput placeholder="מספר פורט" 
+                                name="port" [(ngModel)]="dotModel.connectedToPort" />
                     </mat-form-field>
                 </td>
                 <td>
-                    <mat-form-field>
+                    <mat-form-field *ngIf="dotDetails">
+                        <mat-label>{{dotDetails.switch.switchName}}</mat-label>
+                        <mat-select (selectionChange)='changeValue($event.value,"switchId")'>
+                            <mat-option *ngFor="let switch of switchData"  [value]="switch">
+                                {{switch.switchName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!dotDetails">
                         <mat-label>בחר מתג</mat-label>
                         <mat-select (selectionChange)='changeValue($event.value,"switchId")'>
                             <mat-option *ngFor="let switch of switchData"  [value]="switch.switchId">
@@ -52,13 +82,26 @@
             </tr>
             <tr>
                 <td>
-                    <mat-form-field>
-                        <input type="text" matInput placeholder="vlan?"  name="vlan"
-                        [(ngModel)]="dotModel.vlan" />
+                    <mat-form-field *ngIf="dotDetails">
+                        <input type="text" matInput name="vlan" placeholder="vlan?" [(ngModel)]="dotDetails.vlan"/>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!dotDetails">
+                        <input type="text" matInput placeholder="vlan?"
+                                name="vlan" [(ngModel)]="dotModel.vlan" />
                     </mat-form-field>
                 </td>
                 <td>
-                    <mat-form-field>
+                    <mat-form-field *ngIf="dotDetails">
+                        <mat-label>{{dotDetails.system.systemName}}</mat-label>
+                        <mat-select (selectionChange)='changeValue($event.value,"systemId")'>
+                            <mat-option *ngFor="let system of systemData" [value]="system">
+                                {{system.systemName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!dotDetails">
                         <mat-label>בחר מערכת</mat-label>
                         <mat-select (selectionChange)='changeValue($event.value,"systemId")'>
                             <mat-option *ngFor="let system of systemData" [value]="system.systemId">
